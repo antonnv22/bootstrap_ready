@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin panel</title>
     <link rel="icon" type="image/png" href="/icons-spring-logo.ico">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
 <div class="d-flex bg-dark" th:object="${user}">
@@ -17,13 +18,14 @@
 <div class="row">
     <div class="col-2 mt-3 p-0">
         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-            <a class="nav-item nav-link active ml-2" data-toggle="pill" href="#user_panel" role="tab" aria-controls="user_panel" aria-selected="true">User</a>
+            <a class="nav-item nav-link active ml-2" data-toggle="pill" href="#user_panel" role="tab"
+               aria-controls="user_panel" aria-selected="true">User</a>
         </div>
     </div>
     <div class="col-10 p-0">
         <div class="tab-content bg-light p-2">
             <div class="tab-pane fade show active pl-3" style="height: 700px;" id="user_panel"
-                                                        role="tabpanel" aria-labelledby="user_panel">
+                 role="tabpanel" aria-labelledby="user_panel">
                 <h1>User information-page</h1>
                 <div class="pl-3 pt-1 d-flex border-top border-left border-right"><h4> About user</h4></div>
                 <div class="bg-white border p-3">
@@ -58,7 +60,11 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 </body>
 </html>
