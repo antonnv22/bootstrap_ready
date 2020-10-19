@@ -14,6 +14,7 @@ public class RoleServiceImpl implements RoleService {
     public RoleServiceImpl (RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
+
     @Override
     public void createRoles(Set<Role> roles) {
         roleRepository.saveAll(roles);
@@ -23,7 +24,7 @@ public class RoleServiceImpl implements RoleService {
     public Set<Role> getAllRoles() {
         Iterable<Role>  iterable = roleRepository.findAll();
         Set<Role> set = new HashSet<>();
-        iterable.forEach(role -> set.add(role));
+        iterable.forEach(set::add);
         return set;
     }
 }
