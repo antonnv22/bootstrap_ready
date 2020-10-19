@@ -1,6 +1,7 @@
 package web.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,8 +9,8 @@ import web.model.User;
 import web.repository.UserRepository;
 import java.util.Optional;
 
-@Service("userServiceImpl")
-public class UserServiceImpl implements UserService {
+@Service
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -25,8 +26,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        if ((userRepository.findByName(user.getName()) == null) || (userRepository.findByEmail(user.getEmail()) == null)) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+        }
     }
 
     @Override
@@ -36,8 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        if ((userRepository.findByName(user.getName()) == null) || (userRepository.findByEmail(user.getEmail()) == null)) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+        }
     }
 
     @Override

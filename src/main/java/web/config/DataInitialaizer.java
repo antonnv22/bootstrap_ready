@@ -10,32 +10,40 @@ import web.model.User;
 import web.repository.RoleRepository;
 import web.repository.UserRepository;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
+public class DataInitialaizer {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private Set<Role> rolesSet;
 
-    public SetupDataLoader (UserRepository userRepository,
+    public DataInitialaizer(UserRepository userRepository,
                             RoleRepository roleRepository,
                             BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
-    @Override
+    @PostConstruct
     @Transactional
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+    public void initRoles() {
         Role[] rolesArray = new Role[]{new Role("ROLE_ADMIN"), new Role("ROLE_USER")};
-        Set<Role> rolesSet = new HashSet<>();
+        rolesSet = new HashSet<>();
         rolesSet.addAll(Arrays.asList(rolesArray));
         roleRepository.saveAll(rolesSet);
+    }
+
+    @PostConstruct
+    @Transactional
+    public void initUsers() {
         User admin = new User("admin", "admin", 30, "admin@mail.ru", passwordEncoder.encode("admin"), rolesSet);
         userRepository.save(admin);
     }
